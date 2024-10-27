@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "crud-mongodb"
+version = "0.1.0"
+description = ""
+authors = ["FelipeHardmann <fashardmann@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.3"
+pymongo = "^4.10.1"
+uvicorn = "^0.32.0"
+pydantic = {extras = ["email"], version = "^2.9.2"}
+bcrypt = "^4.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
