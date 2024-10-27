@@ -53,13 +53,9 @@ Testando a API
 
 Uma vez que o servidor esteja em execução, você pode acessar a documentação da API na interface interativa do Swagger em:
 
-arduino
-
 http://127.0.0.1:8000/docs
 
 Ou a documentação alternativa em formato Redoc:
-
-arduino
 
 http://127.0.0.1:8000/redoc
 
