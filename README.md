@@ -1,72 +1,43 @@
-Projeto CRUD com MongoDB usando FastAPI
+Configuração do Ambiente
 
-Este projeto implementa uma API CRUD usando FastAPI e MongoDB como banco de dados, com gerenciamento de dependências usando Poetry.
-Pré-requisitos
+    Arquivo .env:
+        Este projeto utiliza um arquivo .env para determinar se o ambiente é de produção ou de teste.
+        A variável de ambiente ENV deve ser definida como prod para produção ou test para o ambiente de testes.
+        Para definir a variável, você pode adicionar a seguinte linha ao seu arquivo .env:
 
-    Python 3.11 ou superior
-    MongoDB em execução localmente ou em uma instância acessível (ex: MongoDB Atlas)
-    Poetry para gerenciamento de dependências
+        makefile
 
-Instalação do Poetry
+    ENV=prod
 
-Para instalar o Poetry, use o seguinte comando:
+Dependências:
 
-bash
+    Este projeto utiliza as seguintes dependências, que podem ser instaladas através do Poetry:
 
-curl -sSL https://install.python-poetry.org | python3 -
+    bash
 
-Clonando o repositório
+        poetry install
 
-Clone este repositório para sua máquina:
+Execução de Testes
 
-bash
+Para executar os testes do projeto, utilize o pytest. O pytest irá automaticamente buscar por arquivos que começam com test_ ou terminam com _test e executar os testes definidos.
 
-git clone https://github.com/FelipeHardmann/crud_fastapi_mongodb.git
-cd crud_fastapi_mongodb
-
-Instalando as Dependências
-
-Use o Poetry para instalar todas as dependências do projeto:
+Para executar os testes, use o seguinte comando:
 
 bash
 
-poetry install
+poetry run pytest
 
-Este comando cria um ambiente virtual isolado e instala todas as bibliotecas necessárias, conforme especificado no arquivo pyproject.toml.
-Configuração do Banco de Dados
+Rotas da API
 
-Certifique-se de que você possui um banco MongoDB em execução. Por padrão, o MongoDB local roda em mongodb://localhost:27017. Caso esteja usando uma URL diferente, altere a conexão no código da aplicação.
-Executando o Servidor
+As seguintes rotas estão disponíveis na API:
 
-Para iniciar o servidor, use o Uvicorn, que é um servidor ASGI leve recomendado para FastAPI. Execute o comando:
+    GET /users/: Retorna todos os usuários.
+    GET /users/{id}: Retorna um usuário específico pelo ID.
+    POST /register: Registra um novo usuário. Retorna um erro se o email já estiver registrado.
+    PUT /users/{id}: Atualiza as informações de um usuário existente.
+    DELETE /users/{id}: Remove um usuário pelo ID.
 
-bash
+Observações
 
-poetry run uvicorn main:app --reload
-
-Aqui:
-
-    main:app é o caminho para a aplicação FastAPI.
-    --reload ativa o recarregamento automático durante o desenvolvimento.
-
-Testando a API
-
-Uma vez que o servidor esteja em execução, você pode acessar a documentação da API na interface interativa do Swagger em:
-
-http://127.0.0.1:8000/docs
-
-Ou a documentação alternativa em formato Redoc:
-
-http://127.0.0.1:8000/redoc
-
-Estrutura do Projeto
-
-    main.py: Arquivo principal que define a aplicação FastAPI e as rotas.
-    pyproject.toml: Configuração das dependências gerenciadas pelo Poetry.
-
-Autenticação e Segurança
-
-A biblioteca bcrypt é utilizada para hashing de senhas, e o Pydantic auxilia na validação dos dados.
-Contribuição
-
-Para contribuir, faça um fork do repositório, crie um branch com as suas alterações e abra um pull request.
+    Certifique-se de que o MongoDB esteja em execução na máquina local para que a aplicação possa se conectar ao banco de dados.
+    A estrutura de usuários é baseada no modelo definido no arquivo models/user.py.
